@@ -3,6 +3,15 @@ import { DQLResponse, DQLMutationResponse } from "./dqltypes";
 import { GQLResponse } from "./gqltypes";
 import { dql } from "./index";
 import { JSON } from "json-as";
+/*
+   graph object helper exposes function related to Graph algorithms
+   jaccard Similarity uses jaccard distance ( 1 - intersection/union) to find similar nodes based on common childrens.
+   jaccard recommendation finds children missing from a parent compared to similar parents.
+
+   TODO: add more graph algorithms, shortest path, etc...
+
+*/
+
 
 export abstract class graph {
     static buildJaccardSimilarityQuery(
@@ -128,7 +137,7 @@ export abstract class graph {
      
       let query = this.buildJaccardRecoQuery(parentId, topK, spec)
       console.log(query)
-      const response =  dql.query<JaccardRecommandationResult>(query)
+      const response =  dql.query<JaccardRecommendationResult>(query)
       return response.data.items
     }
   }
@@ -163,7 +172,7 @@ export abstract class graph {
     intersection_size!: f32;
   }
   @json
-  export class JaccardRecommandationResult {
+  export class JaccardRecommendationResult {
     items!: JaccardItemNode[]
   }
   @json
