@@ -1,5 +1,10 @@
 import { JSON } from "json-as";
-import { dql, model, ClassificationResult, graphql } from "hypermode-as";
+import {
+  dql,
+  graphql,
+  model,
+  ClassificationResult,
+} from "@hypermode/functions-as";
 
 export function add(a: i32, b: i32): i32 {
   return a + b;

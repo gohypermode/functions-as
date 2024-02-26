@@ -1,7 +1,7 @@
 {
-  "name": "hypermode-as",
+  "name": "@hypermode/functions-as",
   "version": "0.1.0",
-  "description": "Hypermode library for AssemblyScript plugins",
+  "description": "Hypermode library for AssemblyScript functions",
   "author": "Hypermode, Inc.",
   "license": "MIT",
   "type": "module",
@@ -13,12 +13,12 @@
     "lint:fix": "eslint --ext .ts --fix ."
   },
   "dependencies": {
-    "json-as": "^0.7.2"
+    "json-as": "^0.7.3"
   },
   "devDependencies": {
     "@as-pect/cli": "^8.1.0",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
     "assemblyscript": "^0.27.24",
     "assemblyscript-prettier": "^3.0.1",
     "eslint": "^8.56.0",
