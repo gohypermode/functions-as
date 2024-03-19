@@ -93,6 +93,15 @@ export abstract class model {
     }
     return output;
   }
+  public static semanticSearch(
+    embeddingIndex: string,
+    text: string,
+  ): Map<string,string>[] {
+    const response = host.semanticSearch(embeddingIndex, text);
+
+    const result = JSON.parse<Map<string,string>[]>(response);
+    return result;
+  }
 }
 
 export abstract class classifier {
