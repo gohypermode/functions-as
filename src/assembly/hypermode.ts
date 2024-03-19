@@ -26,3 +26,8 @@ export declare function invokeTextGenerator(
   instruction: string,
   sentence: string,
 ): string;
+
+export declare function semanticSearch(
+  embeddingIndex: string,
+  sentence: string,
+): string;
