@@ -25,7 +25,7 @@ export function getPeople(): Person[] {
   return people;
 }
 
-export function queryPeople1(): string {
+export function queryPeople1(): Person[] {
   const query = `
     {
       people(func: type(Person)) {
@@ -39,13 +39,13 @@ export function queryPeople1(): string {
   const response = dql.query<PeopleData>(query);
   const people = response.data.people;
   people.forEach((p) => p.updateFullName());
-  return JSON.stringify(people);
+  return people;
 }
 
 export function queryPeopleWithVars(
   firstName: string,
   lastName: string,
-): string {
+): Person[] {
   const query = `
     query peopleWithVars($firstName: string, $lastName: string) {
       people(func: eq(Person.firstName, $firstName)) @filter(eq(Person.lastName, $lastName)) {
@@ -63,10 +63,10 @@ export function queryPeopleWithVars(
   const response = dql.query<PeopleData>(query, parameters);
   const people = response.data.people;
   people.forEach((p) => p.updateFullName());
-  return JSON.stringify(people);
+  return people;
 }
 
-export function queryPeople2(): string {
+export function queryPeople2(): Person[] {
   const statement = `
     query {
       people: queryPerson {
@@ -87,7 +87,7 @@ export function queryPeople2(): string {
   console.log(`End: ${tracing.endTime.toISOString()}`);
   console.log(`Duration: ${duration}ms`);
 
-  return JSON.stringify(results.data.people);
+  return results.data.people;
 }
 
 export function newPerson1(firstName: string, lastName: string): string {
@@ -151,15 +151,18 @@ export function getRandomPerson(): Person {
   return results.data.people[0];
 }
 
-export function testClassifier(modelId: string, text: string): string {
-  return JSON.stringify(model.classifyText(modelId, text));
+export function testClassifier(
+  modelId: string,
+  text: string,
+): ClassificationResult {
+  return model.classifyText(modelId, text);
 }
 
 export function testMultipleClassifier(
   modelId: string,
   ids: string,
   texts: string,
-): string {
+): ClassificationObject[] {
   // convert ids to array
   const idArr = JSON.parse<string[]>(ids);
   // convert texts to array
@@ -177,18 +180,18 @@ export function testMultipleClassifier(
       result: response.get(idArr[i]),
     });
   }
-  return JSON.stringify(resultObjs);
+  return resultObjs;
 }
 
-export function testEmbedding(modelId: string, text: string): string {
-  return JSON.stringify(model.computeTextEmbedding(modelId, text));
+export function testEmbedding(modelId: string, text: string): f64[] {
+  return model.computeTextEmbedding(modelId, text);
 }
 
 export function testEmbeddings(
   modelId: string,
   ids: string,
   texts: string,
-): string {
+): EmbeddingObject[] {
   // convert ids to array
   const idArr = JSON.parse<string[]>(ids);
   // convert texts to array
@@ -206,7 +209,7 @@ export function testEmbeddings(
       embedding: response.get(idArr[i]),
     });
   }
-  return JSON.stringify(resultObjs);
+  return resultObjs;
 }
 
 export function testTextGenerator(
@@ -254,16 +257,12 @@ class GQLAggregateValues {
   count: u32 = 0;
 }
 
-
-@json
 class ClassificationObject {
   id!: string;
   text!: string;
   result!: ClassificationResult;
 }
 
-
-@json
 class EmbeddingObject {
   id!: string;
   text!: string;
