@@ -152,6 +152,10 @@ export function testClassifier(text: string): Map<string, f32> {
   return inference.getClassificationLabelsForText(classifier_model, text);
 }
 
+export function testClassifyText(text: string, threshold: f32): string {
+  return inference.classifyText(classifier_model, text, threshold);
+}
+
 export function testMultipleClassifier(
   ids: string,
   texts: string,
