@@ -15,8 +15,7 @@
     },
     {
       "name": "github",
-      "endpoint": "https://api.github.com",
-      "authHeader": "Authorization"
+      "endpoint": "https://api.github.com"
     }
   ]
 }
