@@ -25,3 +25,9 @@ export declare function invokeTextGenerator(
   sentence: string,
   format: string,
 ): string;
+
+export declare function databaseQuery(
+  datasourceName: string,
+  datasourceType: string,
+  queryData: string, // JSON data, structure depends upon the datasource type
+): string;
