@@ -1,0 +1,33 @@
+{
+  "name": "postgresql-example",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Hypermode Functions Example using PostgreSQL database",
+  "author": "Hypermode, Inc.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "node ./node_modules/@hypermode/functions-as/bin/build-plugin.js",
+    "pretty": "prettier --write .",
+    "pretty:check": "prettier --check .",
+    "lint": "eslint --ext .ts .",
+    "lint:fix": "eslint --ext .ts --fix ."
+  },
+  "dependencies": {
+    "@hypermode/functions-as": "../../src",
+    "json-as": "^0.9.8"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.14.1",
+    "assemblyscript": "^0.27.28",
+    "assemblyscript-prettier": "^3.0.1",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.2",
+    "typescript": "^5.5.2",
+    "visitor-as": "^0.11.4"
+  },
+  "overrides": {
+    "assemblyscript": "$assemblyscript"
+  }
+}
