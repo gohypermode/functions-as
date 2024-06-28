@@ -12,7 +12,10 @@ export class FunctionSignature {
 
   toString() {
     const params = this.parameters
-      .map((p) => `${p.name}: ${p.type.name}`)
+      .map(
+        (p) =>
+          `${p.name}: ${p.type.name}${p.optional ? " = " + p.defaultValue : ""}`,
+      )
       .join(", ");
     return `${this.name}(${params}): ${this.returnType.name}`;
   }
@@ -54,9 +57,11 @@ export interface TypeInfo {
   path: string;
 }
 
-interface Parameter {
+export interface Parameter {
   name: string;
   type: TypeInfo;
+  optional: boolean;
+  defaultValue: string;
 }
 
 interface Field {
